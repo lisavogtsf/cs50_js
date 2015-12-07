@@ -14,7 +14,10 @@
 
  function caesar(key, plaintext) {
 
- 	var ciphertext = "";
+ 	var plainCharCode;
+ 	var zeroedCharCode;
+ 	var cipherCharCode;
+ 	var ciphertext = [];
 
  	// TODO/lv command line implementation need to check for
  	// valid number of command line arguments (2)
@@ -35,15 +38,41 @@
  		return 1;
  	}
 
- 	// using ASCII math rotate characters by k 
+ 	// using ASCII math rotate characters by k
+ 	// 
  	// preserving caplitalization and only changing alphabetical chars
- 	
+	for (var i = 0; i < plaintext.length; i++) {
+
+		plainCharCode = plaintext[i].charCodeAt();
+		console.log(plaintext[i], plainCharCode);
+
+		if (plaintext[i] >= "A" && plaintext[i] <= "Z") {
+			// console.log("capital letter", plaintext[i]);
+			zeroedCharCode = plainCharCode - "A".charCodeAt();
+			cipherCharCode = ((zeroedCharCode + key) % 26) + "A".charCodeAt();
+
+		} else if (plaintext[i] >= "a" && plaintext[i] <= "z") {
+			// console.log("lowercase letter", plaintext[i]);
+			zeroedCharCode = plainCharCode - "a".charCodeAt();
+			cipherCharCode = ((zeroedCharCode + key) % 26) + "a".charCodeAt();
+		} else {
+			// if not alphabetical, no change
+			cipherCharCode = plainCharCode;
+		}
+
+		// after transformation, add to ciphertext
+		ciphertext.push(String.fromCharCode(cipherCharCode));
+		console.log("cipherCharCode", cipherCharCode);
+		console.log("ciphertext", ciphertext);
+	}
+
+ 	// print plaintext and ciphertext
  	console.log("Plaintext message: \n", plaintext);
-	console.log("Encrypted message: \n", ciphertext);
+	console.log("Encrypted message: \n", ciphertext.join(""));
 	return 0;
  }
 
-var key = 5;
-var plaintext = "Round and round the ragged rock";
+var key = 13;
+var plaintext = "Be sure to drink your Ovaltine!";
 
 caesar(key, plaintext);
