@@ -6,8 +6,9 @@
  */
 
 var initials = function () {
-  // get user input, can assume it's safe
+  // get user input, can assume it's safe per CS50x specs
   var fullname = window.prompt();
+
   // break full name into array of individual name stirngs
   var nameArray = fullname.split(' ');
   var result = "";
@@ -17,9 +18,10 @@ var initials = function () {
   for (var i = 0; i < nameArray.length; i++) {
     result += nameArray[i].toUpperCase()[0];
   }
+  
   // console.log will automatically print a newline
   // that's why we need to concatenate the results into a string
+  // rather than logging each letter one by one
   console.log(result);
 };
 initials();
-
