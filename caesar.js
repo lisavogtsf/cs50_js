@@ -1,9 +1,10 @@
 /*
  * caesar.js for CS50 pset2
  * Lisa Vogt 2015
- * - from command line take in an integer key 'k'
+ *
+ * - from command line take in an integer key
  *  -- given different handling of command line input between
- *     node and browser console, doing these as parameters
+ *     node and browser console, I'm doing these as parameters
  * - prompt the user for a string of plaintext to encode
  * - using "Caesar's cipher" with key, rotate all letters
  *  -- maintain case
@@ -11,28 +12,38 @@
  * - print ciphertext
  */
 
- function caesar(k, plaintext) {
+ function caesar(key, plaintext) {
 
- 	// if do command line implementation need to check for
+ 	var ciphertext = "";
+
+ 	// TODO/lv command line implementation need to check for
  	// valid number of command line arguments (2)
  	// then do a separate prompt for plaintext
 
  	// make sure k is an integer not a string/character
- 	k = parseInt(k);
+ 	key = parseInt(key);
+
+ 	// make sure key is non-negative
+	if (key < 0) {
+		console.log("Key must be a non-negative integer.\n");
+		return 1;
+	}
 
  	// make sure plaintext is a valid string
  	if ( typeof plaintext !== "string" || plaintext.length === 0) {
- 		console.log("Please provide a valide plaintext string");
- 		return;
+ 		console.log("Please provide a valide plaintext string.\n");
+ 		return 1;
  	}
 
  	// using ASCII math rotate characters by k 
  	// preserving caplitalization and only changing alphabetical chars
-
-	console.log(ciphertext);
+ 	
+ 	console.log("Plaintext message: \n", plaintext);
+	console.log("Encrypted message: \n", ciphertext);
+	return 0;
  }
 
-var k = 5;
+var key = 5;
 var plaintext = "Round and round the ragged rock";
 
-caesar(k, plaintext);
+caesar(key, plaintext);
