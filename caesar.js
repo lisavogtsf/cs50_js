@@ -39,31 +39,27 @@
  	}
 
  	// using ASCII math rotate characters by k
- 	// 
  	// preserving caplitalization and only changing alphabetical chars
+ 	// zero out the ascii so we can control going off the end of the
+ 	// alphabet with just % 26, then put back in place
 	for (var i = 0; i < plaintext.length; i++) {
 
 		plainCharCode = plaintext[i].charCodeAt();
-		console.log(plaintext[i], plainCharCode);
 
 		if (plaintext[i] >= "A" && plaintext[i] <= "Z") {
-			// console.log("capital letter", plaintext[i]);
 			zeroedCharCode = plainCharCode - "A".charCodeAt();
 			cipherCharCode = ((zeroedCharCode + key) % 26) + "A".charCodeAt();
 
 		} else if (plaintext[i] >= "a" && plaintext[i] <= "z") {
-			// console.log("lowercase letter", plaintext[i]);
 			zeroedCharCode = plainCharCode - "a".charCodeAt();
 			cipherCharCode = ((zeroedCharCode + key) % 26) + "a".charCodeAt();
 		} else {
 			// if not alphabetical, no change
 			cipherCharCode = plainCharCode;
 		}
-
+		
 		// after transformation, add to ciphertext
 		ciphertext.push(String.fromCharCode(cipherCharCode));
-		console.log("cipherCharCode", cipherCharCode);
-		console.log("ciphertext", ciphertext);
 	}
 
  	// print plaintext and ciphertext
