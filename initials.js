@@ -1,6 +1,8 @@
 /*
- * initials.js for CS50 pset2
+ * initials.js (originally in C for CS50x pset2)
  * Lisa Vogt 2015
+ * lisavogt.sf@gmail.com
+ *
  * - take in name (2+ names with spaces, no special characters, any case)
  * - print initials (uppercase, two letters, newline)
  */

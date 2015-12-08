@@ -1,9 +1,10 @@
 /*
- * caesar.js for CS50 pset2
+ * caesar.js (originally in C for CS50x pset2)
  * Lisa Vogt 2015
+ * lisavogt.sf@gmail.com
  *
  * - from command line take in an integer key
- *  -- given different handling of command line input between
+ *  -- given different handling of command-line input between
  *     node and browser console, I'm doing these as parameters
  * - prompt the user for a string of plaintext to encode
  * - using "Caesar's cipher" with key, rotate all letters
