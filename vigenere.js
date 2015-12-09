@@ -50,36 +50,27 @@ function vigenere (key) {
 	// encrypt plaintext with key -> ciphertext
 	for (var i = 0, j = 0; i < plaintext.length; i++) {
 
-		// // set the keyNumber based on conversion to earlier numeric
-		// // conversion, loop at end of word
-		// keyNumber = keyNumeric[j % keyLength];
-		// p = plaintext[i].charCodeAt();
+		// set the keyNumber based on conversion to earlier numeric
+		// conversion, loop at end of word
+		keyNumber = keyNumeric[j % keyLength];
+		p = plaintext[i].charCodeAt();
 
 
 		// for uppercase letters
 		if (/[A-Z]/.test(plaintext[i]) === true) {
-			ciphertext += plaintext[i].toLowerCase();
-			// tmp = (p - "A".charCodeAt() + keyNumber) % 26 + "A".charCodeAt();
-			// ciphertext[i] = String.fromCharCode(tmp);
-			// j++;
+			ciphertext += String.fromCharCode((p - "A".charCodeAt() + keyNumber) % 26 + "A".charCodeAt());
+			j++;
 
 		} else if (/[a-z]/.test(plaintext[i]) === true) {
 			
-			ciphertext += plaintext[i].toUpperCase();
-
-			// // lowercase letters
-			// p = p - "a".charCodeAt();
-			// ciphertext[i] = String.fromCharCode((p + keyNumber) + "a".charCodeAt());
-			// j++;
+			// lowercase letters
+			ciphertext += String.fromCharCode((p - 'a'.charCodeAt() + keyNumber) % 26 + 'a'.charCodeAt());
+			j++;
 
 		} else {
 			// punctuation and numbers (non-alpha) in plaintext will pass through unchanged
 			ciphertext += plaintext[i];
 		}
-
-
-
-console.log("ciphertext", ciphertext);
 	}
 
 	// print ciphertext
