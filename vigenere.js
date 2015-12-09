@@ -19,10 +19,9 @@ function vigenere (key) {
 	var keyLength,
 		regExpAlpha,
 		plaintext,
-		plaintextLength,
-		ciphertext,
 		p,
 		tmp;
+	var ciphertext = "";
 	var keyNumeric = [];
 	var keyNumber = null;
 ;
@@ -47,42 +46,45 @@ function vigenere (key) {
 
 	// prompt for plaintext, set cipher as equal initially
 	plaintext = window.prompt();
-	plaintextLength = plaintext.length;
-	ciphertext = plaintext;
 
 	// encrypt plaintext with key -> ciphertext
-	for (var i = 0, j = 0; i < plaintextLength; i++) {
-		// set the keyNumber based on conversion to earlier numeric
-		// conversion, loop at end of word
-		keyNumber = keyNumeric[j % keyLength];
-		p = plaintext[i].charCodeAt();
+	for (var i = 0, j = 0; i < plaintext.length; i++) {
+
+		// // set the keyNumber based on conversion to earlier numeric
+		// // conversion, loop at end of word
+		// keyNumber = keyNumeric[j % keyLength];
+		// p = plaintext[i].charCodeAt();
+
 
 		// for uppercase letters
 		if (/[A-Z]/.test(plaintext[i]) === true) {
+			ciphertext += plaintext[i].toLowerCase();
+			// tmp = (p - "A".charCodeAt() + keyNumber) % 26 + "A".charCodeAt();
+			// ciphertext[i] = String.fromCharCode(tmp);
+			// j++;
 
-			tmp = (p - "A".charCodeAt() + keyNumber) % 26 + "A".charCodeAt();
+		} else if (/[a-z]/.test(plaintext[i]) === true) {
+			
+			ciphertext += plaintext[i].toUpperCase();
 
-			ciphertext[i] = String.fromCharCode(tmp);
+			// // lowercase letters
+			// p = p - "a".charCodeAt();
+			// ciphertext[i] = String.fromCharCode((p + keyNumber) + "a".charCodeAt());
+			// j++;
 
-			j++;
+		} else {
+			// punctuation and numbers (non-alpha) in plaintext will pass through unchanged
+			ciphertext += plaintext[i];
 		}
 
-		// lowercase letters
-		if (/[a-z]/.test(plaintext[i]) === true) {
-			p = p - "a".charCodeAt();
-			ciphertext[i] = String.fromCharCode((p + keyNumber) + "a".charCodeAt());
-			j++;
-		}
-
-		// punctuation and numbers (non-alpha) in plaintext will pass through unchanged
 
 
 console.log("ciphertext", ciphertext);
 	}
 
 	// print ciphertext
-	console.log("Plaintext: \t\t", plaintext);
-	console.log("Ciphertext: \t", ciphertext);
+	console.log("Plaintext:  ", plaintext);
+	console.log("Ciphertext: ", ciphertext);
 
 	return 0;
 }
